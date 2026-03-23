@@ -18,4 +18,4 @@ In the Pull request overview, provide the following information for each problem
 
 - Ignore minor issues.
 - Do **not** comment on critical issues such as not metting the assignment requirements. Any critical issues must be mentioned in the pull request overview.
-- Only comment on moderate issues — things that aren’t necessarily wrong but aren’t ideal either.
+- Only comment on moderate issues (if any) — things that aren’t necessarily wrong but aren’t ideal either.
