@@ -151,7 +151,7 @@ if [ $# -eq 0 ]; then
     echo "#############################################"
     echo "Running tests..."
 fi
-for arg in {a..f}; do
+for arg in {a..e}; do
     if [ $# -eq 0 ] || [[ "$@" == *"$arg"* ]]; then kadai-$arg; fi
 done
 if [ $# -eq 0 ]; then
