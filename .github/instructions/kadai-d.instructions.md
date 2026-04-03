@@ -2,14 +2,18 @@
 applyTo: "kadai-d/**"
 ---
 
-**Problem statement:** Create a shell script `convert.sh` that automates the following transformations on source files.
+**Context:** Consider capturing the output of the following command to files:
+```
+strace /bin/cat /proc/meminfo
+```
 
-1. Rename all `.cpp` files to `.cc`.
-2. In the comment block at the top of each source file, replace:
-   - Author name: "NEET the 3rd" → your own name
-   - Email address: "neet3@example.com" → your own email address
-3. Remove trailing whitespace.
+**Problem statement:** Create a shell script `output.sh` that runs the above command and redirects its output as follows:
+
+1. `cat.txt` — capture only the output produced by `cat` (stdout)
+2. `strace.txt` — capture only the output produced by `strace` (stderr)
+3. `all.txt` — capture both outputs
 
 **Requirements:**
 
-- Nothing in particular.
+- Do **not** use `strace`'s built-in file output option.
+- The command may be executed at most **two times** within `output.sh`. Side effects from multiple executions can be ignored.
