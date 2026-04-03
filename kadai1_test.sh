@@ -81,18 +81,24 @@ kadai-c() {
         cp -r kadai-c $dir
         pushd $dir/kadai-c > /dev/null 2>&1
 
-        original="original.pdf"
-
-        if [ ! -f concatenation.sh ]; then
-            warn "kadai-c: Missing 'concatenation.sh'."
+        if [ ! -f convert.sh ]; then
+            warn "kadai-c: Missing 'convert.sh'."
         fi
 
-        ./concatenation.sh > /dev/null 2>&1
+        ./convert.sh > /dev/null 2>&1
 
-        if [ ! -f 1.pdf ]; then
-            warn "kadai-c: Failed to generate '1.pdf' with '$ ./concatenation.sh'."
-        elif [ ! -z "`diff $original 1.pdf`" ]; then
-            warn "kadai-c: Is your 1.pdf valid? (detect diff)"
+        if [ ! -z "`find . -name \*.cpp`" ]; then
+            warn "kadai-c: Did you convert *.cpp to *.cc?"
+        else
+            if [ `grep 'NEET the 3rd' *.cc | wc -l` -ne 0 ]; then
+                warn "kadai-c: Did you replace 'NEET the 3rd' to your name?"
+            fi
+            if [ `grep 'neet3@example.com' *.cc | wc -l` -ne 0 ]; then
+                warn "kadai-c: Did you replace 'neet3@example.com' to your email address?"
+            fi
+            if [ `grep " $" *.cc | wc -l` -ne 0 ]; then
+                warn "kadai-c: Did you remove all trailing whitespaces?"
+            fi
         fi
 
         popd > /dev/null 2>&1
@@ -106,24 +112,22 @@ kadai-d() {
         cp -r kadai-d $dir
         pushd $dir/kadai-d > /dev/null 2>&1
 
-        if [ ! -f convert.sh ]; then
-            warn "kadai-d: Missing 'convert.sh'."
+        if [ ! -f output.sh ]; then
+            warn "kadai-d: Missing 'output.sh'."
         fi
 
-        ./convert.sh > /dev/null 2>&1
+        ./output.sh > /dev/null 2>&1
 
-        if [ ! -z "`find . -name \*.cpp`" ]; then
-            warn "kadai-d: Did you convert *.cpp to *.cc?"
-        else
-            if [ `grep 'NEET the 3rd' *.cc | wc -l` -ne 0 ]; then
-                warn "kadai-d: Did you replace 'NEET the 3rd' to your name?"
-            fi
-            if [ `grep 'neet3@example.com' *.cc | wc -l` -ne 0 ]; then
-                warn "kadai-d: Did you replace 'neet3@example.com' to your email address?"
-            fi
-            if [ `grep " $" *.cc | wc -l` -ne 0 ]; then
-                warn "kadai-d: Did you remove all trailing whitespaces?"
-            fi
+        if [ ! -f cat.txt ]; then
+            warn "kadai-d: Failed to generate 'cat.txt' with '$ ./output.sh'."
+        fi
+
+        if [ ! -f strace.txt ]; then
+            warn "kadai-d: Failed to generate 'strace.txt' with '$ ./output.sh'."
+        fi
+
+        if [ ! -f all.txt ]; then
+            warn "kadai-d: Failed to generate 'all.txt' with '$ ./output.sh'."
         fi
 
         popd > /dev/null 2>&1
@@ -137,38 +141,9 @@ kadai-e() {
         cp -r kadai-e $dir
         pushd $dir/kadai-e > /dev/null 2>&1
 
-        if [ ! -f output.sh ]; then
-            warn "kadai-e: Missing 'output.sh'."
-        fi
-
-        ./output.sh > /dev/null 2>&1
-
-        if [ ! -f cat.txt ]; then
-            warn "kadai-e: Failed to generate 'cat.txt' with '$ ./output.sh'."
-        fi
-
-        if [ ! -f strace.txt ]; then
-            warn "kadai-e: Failed to generate 'strace.txt' with '$ ./output.sh'."
-        fi
-
-        if [ ! -f all.txt ]; then
-            warn "kadai-e: Failed to generate 'all.txt' with '$ ./output.sh'."
-        fi
-
         popd > /dev/null 2>&1
     else
         warn "kadai-e: No 'kadai-e' directory!"
-    fi
-}
-
-kadai-f() {
-    if [ -d kadai-f ]; then
-        cp -r kadai-f $dir
-        pushd $dir/kadai-f > /dev/null 2>&1
-
-        popd > /dev/null 2>&1
-    else
-        warn "kadai-f: No 'kadai-f' directory!"
     fi
 }
 
