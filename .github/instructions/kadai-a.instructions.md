@@ -7,7 +7,7 @@ source files (`a.c`, `b.c`, and `c.c`). If any compiler warnings are present, fi
 the source files directly. Also create a report (`report-a.md`) to briefly summarize the advantages
 of separate compilation.
 
-*Fort the report, don't review the content — just check whether the file has been created.*
+*Fort the report, don't review the content — just check that the file (`report-a.md`) has been created and that something is written*
 
 **Requirements:**
 
